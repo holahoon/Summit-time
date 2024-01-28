@@ -18,7 +18,19 @@ This command uses `docker-compose.yaml` file to build(if not built) and image an
 $ docker exec -it <container-name> sh
 ```
 This will start a `shell` CLI showing `/ app # `
-Here, start installing any packages needed using `yarn` package manager.
+Here, make sure to start installing any packages needed using `pnpm` package manager.
+
+## Tools
+
+### Database
+- [Turso](https://turso.tech/)
+- [Drizzle ORM](https://orm.drizzle.team/)
+
+### Authentication
+- [Lucia Auth](https://lucia-auth.com/)
+
+### Etc
+- [Editor.js](https://editorjs.io/)
 
 ## Deploying
 
