@@ -1,38 +1,26 @@
-# create-svelte
+# Remnant Journey
+Is a web application for meditating on God's word.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+## Get Started
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Run Docker container
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+$ docker-compose up
 ```
+This command uses `docker-compose.yaml` file to build(if not built) and image and start a development server on: [localhost:5173](http://localhost:5173/).
 
-## Building
+- Add `--build` tag if it needs to be built again.
 
-To create a production version of your app:
+### Installing packages
 
 ```bash
-npm run build
+$ docker exec -it <container-name> sh
 ```
+This will start a `shell` CLI showing `/ app # `
+Here, start installing any packages needed using `yarn` package manager.
 
-You can preview the production build with `npm run preview`.
+## Deploying
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+TODO:
+create `dockerfile.prod` and `docker-compose.prod.yaml` to containerize and deploy.
