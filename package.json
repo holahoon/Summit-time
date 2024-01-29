@@ -37,6 +37,12 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@editorjs/editorjs": "^2.29.0"
+		"@editorjs/editorjs": "^2.29.0",
+		"clsx": "^2.1.0",
+		"lucia": "^3.0.1",
+		"lucide-svelte": "^0.317.0",
+		"oslo": "^1.0.3",
+		"tailwind-merge": "^2.2.1",
+		"tailwind-variants": "^0.1.20"
 	}
 }

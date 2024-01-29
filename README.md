@@ -31,6 +31,8 @@ Here, make sure to start installing any packages needed using `pnpm` package man
 
 ### Styles
 - [TailwindCSS](https://tailwindcss.com/docs/installation)
+- [shadcn-svelte](https://www.shadcn-svelte.com/)
+- [Lucide-svelte](https://lucide.dev/guide/packages/lucide-svelte)
 
 ### Etc
 - [Editor.js](https://editorjs.io/)

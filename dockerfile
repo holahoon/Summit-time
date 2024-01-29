@@ -1,12 +1,11 @@
 # syntax=docker/dockerfile:1
 ARG NODE_VERSION=18.19-alpine
-ARG PNPM_VERSION=8.13.1
 
 FROM node:${NODE_VERSION} AS base
 
 # Install pnpm.
 RUN --mount=type=cache,target=/root/.npm \
-  npm install -g pnpm@${PNPM_VERSION}
+  npm install -g pnpm
 
 FROM base AS development
 ENV NODE_ENV development
