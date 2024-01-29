@@ -29,6 +29,9 @@ Here, make sure to start installing any packages needed using `pnpm` package man
 ### Authentication
 - [Lucia Auth](https://lucia-auth.com/)
 
+### Styles
+- [TailwindCSS](https://tailwindcss.com/docs/installation)
+
 ### Etc
 - [Editor.js](https://editorjs.io/)
 
