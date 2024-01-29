@@ -1,1 +1,1 @@
-<h1>Remnant Journey</h1>
+<h1>Remnant Journey!</h1>
