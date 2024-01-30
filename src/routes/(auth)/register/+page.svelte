@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { z } from 'zod';
+	import type { PageData } from './$types'
+	import RegisterForm from '$lib/components/form/register.svelte'
 
-	export const formSchema = z.object({
-		firstName: z.string(),
-		lastName: z.string(),
-		email: z.string().email()
-	});
+	export let data: PageData
+	$: ({ form } = data)
 </script>
 
 <h1>Register</h1>
+
+<RegisterForm {form} />
