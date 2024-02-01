@@ -1,5 +1,10 @@
+<script lang="ts">
+	import '$styles/app.pcss'
+	import Logo from '$lib/components/logo/logo-ipsum.svelte'
+</script>
+
 <nav>
-	<a href="/">RJ</a>
+	<a href="/"><Logo /></a>
 
 	<ul>
 		<li>
