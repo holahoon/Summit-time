@@ -2,11 +2,11 @@ import { Lucia } from 'lucia'
 import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle'
 import { dev } from '$app/environment'
 import { db } from './db'
-import { sessionTable, userTable } from './db/schema'
+import { session, user } from './db/schema'
 
-export const adapter = new DrizzleSQLiteAdapter(db, sessionTable, userTable)
+export const adapter = new DrizzleSQLiteAdapter(db, session, user)
 
-export const lucia = new Lucia(adapter, {
+export const auth = new Lucia(adapter, {
 	sessionCookie: {
 		attributes: {
 			secure: !dev
@@ -23,7 +23,7 @@ export const lucia = new Lucia(adapter, {
 
 declare module 'lucia' {
 	interface Register {
-		Lucia: typeof lucia
-		DatabaseUserAttributes: Omit<typeof userTable, 'id'>
+		Lucia: typeof auth
+		DatabaseUserAttributes: Omit<typeof user, 'id'>
 	}
 }

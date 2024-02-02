@@ -1,12 +1,9 @@
-/**
- * Replace with Turso or Pocketbase
- * Remove packages:
- * @types/better-sqlite3
- * better-sqlite3
- */
+import { drizzle } from 'drizzle-orm/libsql'
+import { createClient } from '@libsql/client'
+import { SECRET_DEV_DATABASE_CONNECTION, SECRET_DATABASE_AUTH_TOKEN } from '$env/static/private'
 
-import sqlite from 'better-sqlite3'
-import { drizzle } from 'drizzle-orm/better-sqlite3'
-
-const sqliteDB = sqlite(':memory:')
-export const db = drizzle(sqliteDB)
+const client = createClient({
+	url: SECRET_DEV_DATABASE_CONNECTION ?? '',
+	authToken: SECRET_DATABASE_AUTH_TOKEN
+})
+export const db = drizzle(client)

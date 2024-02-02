@@ -1,23 +1,18 @@
-/**
- * Replace with Turso or Pocketbase
- * Remove packages:
- * @types/better-sqlite3
- * better-sqlite3
- */
-
+import { sql } from 'drizzle-orm'
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
 
-export const userTable = sqliteTable('user', {
-	id: text('id').notNull().primaryKey(),
-	// firstName: text('first_name'),
-	// lastName: text('last_name'),
-	email: text('email').unique()
+export const user = sqliteTable('user', {
+	id: text('id').notNull().primaryKey().unique().notNull(),
+	email: text('email').unique().notNull(),
+	password: text('password'),
+	createdAt: text('createdAt').default(sql`CURRENT_DATE`)
+	// TODO: provider (oAuth)
 })
 
-export const sessionTable = sqliteTable('session', {
+export const session = sqliteTable('session', {
 	id: text('id').notNull().primaryKey(),
 	userId: text('user_id')
 		.notNull()
-		.references(() => userTable.id),
+		.references(() => user.id),
 	expiresAt: integer('expires_at').notNull()
 })

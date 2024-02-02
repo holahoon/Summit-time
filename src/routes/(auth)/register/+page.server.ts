@@ -1,9 +1,14 @@
+import { error, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms/server'
+import { Argon2id } from 'oslo/password'
+import { generateId } from 'lucia'
 import { registerSchema } from '$lib/utils/form-schema'
+import { db, schema } from '$lib/server/db'
 import type { Actions, PageServerLoad } from './$types'
-import { fail } from '@sveltejs/kit'
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ locals }) => {
+	if (locals.user) redirect(302, '/')
+
 	const form = await superValidate(registerSchema)
 	return { form }
 }
@@ -11,12 +16,22 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	register: async (event) => {
 		const form = await superValidate(event, registerSchema)
-		console.log('REGISTER POST', form)
 
-		if (!form.valid) return fail(400, form.errors)
+		if (!form.valid) return error(400, { message: 'check fields again' })
 
-		// TODO: look up user from db
+		const { email, password } = form.data
+		const hashedPassword = await new Argon2id().hash(password)
+		const generatedId = generateId(15)
+		const userId = `rt-${generatedId}`
 
-		return { form }
+		try {
+			await db.insert(schema.user).values({ id: userId, email, password: hashedPassword })
+		} catch (err) {
+			// TODO: handle error
+			console.error(err)
+			error(500, { message: 'An unknown error occurred' })
+		}
+
+		redirect(302, '/login')
 	}
 }
